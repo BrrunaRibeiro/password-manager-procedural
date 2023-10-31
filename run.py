@@ -1,5 +1,24 @@
 from cryptography.fernet import Fernet
 
+#def save ():
+
+def list_accounts():
+
+def add_account():
+    """
+    Adds a new account with input funtions and stores in their corresponding variables.
+    """
+    account_name = input("Enter the Account Name(Ex:'Netflix'): ")
+    username = input("Enter the Username/Email: ")
+    password = input("Enter the Password: ")
+    passwords = [account_name] = {'username': username, 'password': password}
+    #save()
+    print(f"Account {account_name} has been added successfully.")
+
+def view_specific_account():
+def update_account():
+def delete_account():
+
 def main():
 #Add login/authentication??
     """
