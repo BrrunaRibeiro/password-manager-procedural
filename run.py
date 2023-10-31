@@ -4,12 +4,11 @@ from cryptography.fernet import Fernet
 key = Fernet.generate_key()
 f = Fernet(key)
 
-#Save  everything in json file or database?
+#Save  everything in json file or database? update save funtion after deciding and uncomment calling it
 
 passwords = {}
 
-#def authentication(): Master password?? update save funtion after deciding and uncomment calling it
-
+#def authentication(): Master password?? 
 
 #def save():
 
@@ -39,7 +38,7 @@ def add_account():
 
 def view_specific_account():
     """
-    Uses input function to get the specific account details.
+    Uses input function to get the specific account' details.
     """
     account_name = input("Enter Account Name you would like to view: ")
     if account_name in passwords:
@@ -51,15 +50,49 @@ def view_specific_account():
         print(f"'{account_name}' account not found.\n")
         start()
 
-#def update_account():
-#def delete_account():
+def update_account():
+    """
+    Uses input function to update the inputted account' details.
+    """
+    account_name = input("Enter Account Name you would like to update: ")
+    if account_name in passwords:
+        print(f"You are updating your '{account_name}''s account.\n")
+        username = input("Enter your new Username: ")
+        password = input("Enter your new Password: ")
+        if username:
+            passwords[account_name]['username'] = username
+        if password:
+            passwords[account_name]['password'] = password
+        #save()
+        print(f"'{account_name} account has been updated. \n")
+    else:
+        print(f"'{account_name}' account not found.\n")
+        start()
+
+def delete_account():
+    """
+    Uses input function to delete the inputted account' details.
+    """
+    account_name = input("Enter Account Name you would like to delete: ")
+    if account_name in passwords:
+        del passwords[account_name]
+        #save()
+        print(f"'{account_name}''s account deleted sucessfully.\n")
+    else:
+        print(f"'{account_name}' account not found.\n")
+        start()
+
+def exit():
+    print("Thank you for using Password Manager! Goodbye!\n")
+    #main() or how to exit?
 
 def start():
-#Add login/authentication?? (use while true and else(false)=exit)
     """
     The user is asked to select an option from the list.
     Input is used to select the option, which is stored in the option_selected variable.
-    """   
+    """ 
+    
+   # while True:
     print("Please select one of the options below...\n")
     print("1. View all stored accounts")
     print("2. Add new account")
@@ -68,7 +101,7 @@ def start():
     print("5. Delete an account")
     print("6. Leave Password Manager\n")
 
-    option_selected = input("Enter your option: ")
+    option_selected = input("Enter your option (Ex: '1'): ")
 
     if option_selected == '1':
         list_accounts()
@@ -81,15 +114,17 @@ def start():
     elif option_selected == '5':
         delete_account()
     elif option_selected == '6':
-        print("Thank you for using Password Manager! Goodbye!\n")
+        exit()
     else:
+       # return False
         print("Invalid option selected. Please enter a valid option...\n")
-        start()
 
-#def main():
+def main():
     """
     Calls all functions in the program.
     """
+    #Add login/authentication?? (use while true and else(false)=exit)
+    print("Welcome to Password Manager\n")
+    start()
 
-print("Welcome to Password Manager\n")
-start()
+main()
